@@ -11,10 +11,7 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Visitior Details" />
 
-    <item
-        android:id="@+id/navb_notice"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="Notice" />
+
     <item
         android:id="@+id/navb_profile"
         android:icon="@drawable/ic_notifications_black_24dp"

@@ -17,11 +17,6 @@
         android:label="Visitor Details"
         tools:layout="@layout/fragment_visi_details" />
 
-    <fragment
-        android:id="@+id/navb_notice"
-        android:name="com.example.priyanshu1.ui.notice.NoticeFragment"
-        android:label="Notice"
-        tools:layout="@layout/fragment_notice" />
 
 
     <fragment

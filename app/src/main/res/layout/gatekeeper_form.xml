@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/loginCard"
     app:cardCornerRadius="@dimen/loginCardRadius"
-    android:elevation="5dp"
+    android:elevation="1dp"
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/loginViewsMargin"
     android:layout_marginBottom="@dimen/loginViewsMargin"
@@ -79,31 +79,16 @@
 
                     <EditText
 
-                        android:layout_width="@dimen/_145sdp"
+                        android:layout_width="match_parent"
                         style="@style/modifiedEditText"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
 
-                        android:hint="Email*"/>
+                        android:hint="Email"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="@dimen/signup_text_margin_top">
 
-                    <EditText
-
-                        android:layout_width="@dimen/_130sdp"
-                        style="@style/modifiedEditText"
-                        android:inputType="date"
-                        android:maxLines="1"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:hint="DD/MM/YYYY* onclick"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +98,7 @@
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Vehicle Number*"/>
+                    android:hint="Vehicle Number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -134,16 +119,18 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/parent"
                     android:layout_weight="1"
-                    android:layout_marginTop="@dimen/signup_text_margin_top">
+                    android:layout_marginTop="@dimen/signup_text_margin_top"
+                    >
 
                     <EditText
-
+                        android:id="@+id/enterdatevisi_entry"
                         android:layout_width="@dimen/_145sdp"
                         style="@style/modifiedEditText"
-                        android:inputType="time"
+                        android:inputType="datetime"
                         android:maxLines="1"
-
-                        android:hint="Enter Time*"/>
+                        android:clickable="false"
+                        android:maxLength="10"
+                        android:hint="Enter Date*"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -152,13 +139,14 @@
                     android:layout_marginTop="@dimen/signup_text_margin_top">
 
                     <EditText
-
+                        android:id="@+id/entertimevisi_entry"
                         android:layout_width="@dimen/_130sdp"
                         style="@style/modifiedEditText"
-                        android:inputType="time"
+                        android:inputType="datetime"
                         android:maxLines="1"
+                        android:maxLength="8"
                         android:layout_marginLeft="@dimen/_5sdp"
-                        android:hint="Exit Time*"/>
+                        android:hint="Enter Time*"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -189,6 +177,7 @@
                     android:textColor="@color/colorPrimary"
                     />
             <Spinner
+                android:id="@+id/spinner_blk_no"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
@@ -196,6 +185,7 @@
 
                 />
             <Spinner
+                android:id="@+id/spinner_flt_no"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
@@ -210,6 +200,7 @@
             <Button
                 style="@style/loginButton"
 
+                android:id="@+id/save_btn_visi_entry"
                 android:text="Save"
                 android:layout_marginTop="@dimen/_10sdp"
                 />

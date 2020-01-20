@@ -2,14 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     style="@style/loginParent"
-    >
-    <ScrollView
-        style="@style/parent">
+    android:orientation="vertical">
 
-        <RelativeLayout
-            style="@style/parent">
+    <ScrollView style="@style/parent">
+
+        <RelativeLayout style="@style/parent">
 
 
             <LinearLayout
@@ -20,9 +18,9 @@
 
                 <LinearLayout
                     style="@style/parent"
+                    android:layout_weight="3"
                     android:background="@drawable/login_shape_bk"
-                    android:orientation="vertical"
-                    android:layout_weight="3">
+                    android:orientation="vertical">
 
                     <ImageView
                         style="@style/parent"
@@ -32,43 +30,42 @@
                 </LinearLayout>
 
             </LinearLayout>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="95dp"
-        android:layout_height="95dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/logo"
-        android:elevation="1dp"
-
-        app:civ_border_overlay="true"
-        />
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:orientation="vertical"
-                android:layout_marginTop="100dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="wrap_content">
 
-                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:elevation="1dp"
+                    android:src="@drawable/logo"
+
+                    app:civ_border_overlay="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_80sdp"
+
+                    android:orientation="vertical"
+
+                    >
 
 
-                <!--<TextView
-                    style="@style/headerText"
-                    android:layout_gravity="center"
-                    android:text="Smart Building Sector"
-                    android:layout_marginTop="40dp"/>-->
-                <include
-                    layout="@layout/login_form"
-                    />
+                    <!--<TextView
+                        style="@style/headerText"
+                        android:layout_gravity="center"
+                        android:text="Smart Building Sector"
+                        android:layout_marginTop="40dp"/>-->
+                    <include layout="@layout/login_form" />
 
-            </LinearLayout>
-</FrameLayout>
+                </LinearLayout>
+            </FrameLayout>
 
         </RelativeLayout>
 

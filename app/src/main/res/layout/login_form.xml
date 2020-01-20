@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/loginCard"
     app:cardCornerRadius="@dimen/loginCardRadius"
-    android:elevation="5dp"
+    android:elevation="1dp"
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/loginViewsMargin"
     android:layout_marginBottom="@dimen/loginViewsMargin"
@@ -59,13 +59,13 @@
             android:textSize="@dimen/newsMoreTextSize"
             android:layout_gravity="end"
             android:onClick="viewForgotPAssword"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="@dimen/_7sdp"/>
 
         <Button
-            android:layout_width="163dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_40sdp"
             android:id="@+id/loginbutton"
-            style="@style/loginButton"
+            android:textColor="@color/whiteTextColor"
             android:background="@drawable/registration_br"
             android:text="Login"
             android:onClick="login"

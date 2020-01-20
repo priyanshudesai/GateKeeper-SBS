@@ -41,18 +41,30 @@
 
     </string-array>
     <string-array name="House_spinner">
+        <item><b>Block</b></item>
         <item>A</item>
         <item>B</item>
         <item>C</item>
         <item>D</item>
+        <item>E</item>
+        <item>F</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="House_Number_spinner">
+        <item><b>Flat</b></item>
         <item>101</item>
         <item>102</item>
         <item>103</item>
         <item>104</item>
+        <item>201</item>
+        <item>202</item>
+        <item>203</item>
+        <item>204</item>
+        <item>301</item>
+        <item>302</item>
+        <item>303</item>
+        <item>304</item>
     </string-array>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
 </resources>
