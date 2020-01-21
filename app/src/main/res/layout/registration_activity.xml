@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    style="@style/loginParent">
+    style="@style/loginParent"
+    tools:context="com.appsnipp.loginsamples.LoginActivity">
     <ScrollView
         style="@style/parent">
 
@@ -22,23 +23,23 @@
                     android:background="@drawable/login_shape_bk"
                     android:orientation="vertical"
                     android:layout_weight="3">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<ImageView
-    android:layout_marginTop="@dimen/_20sdp"
-    android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_width="@dimen/_40sdp"
-    android:layout_height="@dimen/_32sdp"
-    app:srcCompat="@drawable/backbutton"
-    android:onClick="loginback"
-    tools:ignore="OnClick" />
-                    <ImageView
-                        style="@style/parent"
-                        android:background="@drawable/ic_login_bk"
-                        android:contentDescription="login background" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            app:srcCompat="@drawable/backbutton"
+                            android:onClick="loginback"
+                            tools:ignore="OnClick" />
+                        <ImageView
+                            style="@style/parent"
+                            android:background="@drawable/ic_login_bk"
+                            android:contentDescription="login background" />
 
-</FrameLayout>
+                    </FrameLayout>
                 </LinearLayout>
 
             </LinearLayout>
