@@ -21,15 +21,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.Api;
+import com.example.priyanshu1.apiinterface.ApiClient;
+import com.example.priyanshu1.apiinterface.CommanResponse;
+import com.example.priyanshu1.registration.password;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class VisiEntryFragment extends Fragment {
 
-    EditText e,e1;
+    EditText e,e1,fname,mobno,nov,email,vno,pv;
     boolean v=true;
     Spinner s,s1;
     private VisiEntryViewModel visiEntryViewModel;
@@ -41,6 +49,12 @@ public class VisiEntryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_visitor_entry, container, false);
         e=(EditText) root.findViewById(R.id.entertimevisi_entry);
         e1=(EditText) root.findViewById(R.id.enterdatevisi_entry);
+        fname=(EditText) root.findViewById(R.id.entery_fname);
+        mobno=(EditText) root.findViewById(R.id.entery_mobno);
+        nov=(EditText) root.findViewById(R.id.entery_nov);
+        email=(EditText) root.findViewById(R.id.entery_email);
+        vno=(EditText) root.findViewById(R.id.entery_vno);
+        pv=(EditText) root.findViewById(R.id.entery_purvisiting);
 
         s=(Spinner) root.findViewById(R.id.spinner_blk_no);
         s1=(Spinner) root.findViewById(R.id.spinner_flt_no);
@@ -138,17 +152,84 @@ public class VisiEntryFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+
+                String s7 = fname.getText().toString();
+                String s2 = nov.getText().toString();
+                String s6 = vno.getText().toString();
+                String s3 = mobno.getText().toString();
+                String s4 = email.getText().toString();
+                String s5 = pv.getText().toString();
+                String s8,s9=e1.getText().toString(),s10=e.getText().toString();
+
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                String MobilePattern = "[0-9]{10}";
                 v=true;
+
+                if (s7.isEmpty()) {
+                    fname.setError("Enter Full Name");
+                    v = false;
+                }
+                if (s2.isEmpty()) {
+                    nov.setError("Enter No of Visitors");
+                    v = false;
+                }
+                if (s3.isEmpty() || !s3.matches(MobilePattern)) {
+
+                    mobno.setError("Enter Mobile Number");
+                    v = false;
+                }
+                if(!s4.isEmpty()) {
+                    if (!s4.matches(emailPattern)) {
+                        email.setError("Enter Email");
+                        v = false;
+                    }
+                }
+
+                if (s6.isEmpty()) {
+                    vno.setError("Enter Vehicle no");
+                    v = false;
+                }
+
                 if(s.getSelectedItemId()==0){
                     Toast.makeText(getContext(), "Select Block no", Toast.LENGTH_SHORT).show();
                     v=false;
                 }
-                else if(s1.getSelectedItemId()==0){
+                if(s1.getSelectedItemId()==0){
                     Toast.makeText(getContext(), "Select Flat no", Toast.LENGTH_SHORT).show();
                     v=false;
                 }
-                else if(v==true){
-                    Toast.makeText(getContext(), "Visitor Entered", Toast.LENGTH_SHORT).show();
+                s8=s.getSelectedItem()+"-"+s1.getSelectedItem();
+                if(v==true){
+
+
+
+                    Api api= ApiClient.getClient().create(Api.class);
+                    Call<CommanResponse> call=api.gatekvisientry("gatekvisientry",s7
+                            ,s2,s6,s3,s4,s8,s5,s9,s10);
+                    call.enqueue(new Callback<CommanResponse>() {
+                        @Override
+                        public void onResponse(Call<CommanResponse> call, Response<CommanResponse> response) {
+                            if (response.body().getSuccess()==200) {
+
+                                Toast.makeText(getContext(), response.body().getMessage()+"", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext(), response.body().getMessage()+"", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<CommanResponse> call, Throwable t) {
+                            Toast.makeText(getContext(), t.getLocalizedMessage()+"", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+
+
+
                 }
             }
         });

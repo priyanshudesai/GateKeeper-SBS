@@ -21,6 +21,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:id="@+id/entery_fname"
                     style="@style/modifiedEditText"
                     android:inputType="textPersonName"
                     android:maxLines="1"
@@ -39,7 +40,7 @@
                    >
 
                     <EditText
-                        android:id="@+id/firstname"
+                        android:id="@+id/entery_mobno"
                         style="@style/modifiedEditText"
                         android:layout_width="@dimen/_145sdp"
                         android:hint="Mobile Number*"
@@ -55,11 +56,12 @@
 
 
                     <EditText
-                        android:id="@+id/f"
+                        android:id="@+id/entery_nov"
                         android:layout_width="@dimen/_130sdp"
                         style="@style/modifiedEditText"
                         android:inputType="numberDecimal"
                         android:maxLines="1"
+                        android:maxLength="3"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:hint="Number of Visitior*"/>
 
@@ -78,7 +80,7 @@
                     android:layout_marginTop="@dimen/signup_text_margin_top">
 
                     <EditText
-
+                        android:id="@+id/entery_email"
                         android:layout_width="match_parent"
                         style="@style/modifiedEditText"
                         android:inputType="textEmailAddress"
@@ -95,6 +97,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:id="@+id/entery_vno"
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
@@ -108,6 +111,7 @@
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
+                    android:id="@+id/entery_purvisiting"
                     android:hint="Purpose of Visiting"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,7 +182,7 @@
                     />
             <Spinner
                 android:id="@+id/spinner_blk_no"
-                android:layout_width="@dimen/_70sdp"
+                android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:entries="@array/House_spinner"
@@ -186,7 +190,7 @@
                 />
             <Spinner
                 android:id="@+id/spinner_flt_no"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:entries="@array/House_Number_spinner"
@@ -204,12 +208,7 @@
                 android:text="Save"
                 android:layout_marginTop="@dimen/_10sdp"
                 />
-            <Button
-                style="@style/loginButton"
-android:layout_marginLeft="@dimen/_20sdp"
-                android:text="Add"
-                android:layout_marginTop="@dimen/_10sdp"
-                />
+
 
             </LinearLayout>
         </LinearLayout>

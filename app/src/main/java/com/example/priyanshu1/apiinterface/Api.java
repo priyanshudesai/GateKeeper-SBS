@@ -30,4 +30,22 @@ public interface Api {
             @Field("mobno") String mobno,
             @Field("password") String password
     );
+
+
+    @FormUrlEncoded
+    @POST("GatekeeperVisiEntry.php")
+    Call<CommanResponse> gatekvisientry(
+
+            @Field("gatekvisientry") String gatekvisientry,
+            @Field("fullname") String fullname,
+            @Field("numofvisi") String numofvisi,
+            @Field("vno") String vno,
+            @Field("mobno") String mobno,
+            @Field("email") String email,
+            @Field("houseno") String houseno,
+            @Field("purposeofvisi") String purposeofvisi,
+            @Field("date") String date,
+            @Field("time") String time
+
+    );
 }
