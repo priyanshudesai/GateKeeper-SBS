@@ -1,5 +1,7 @@
 package com.example.priyanshu1.apiinterface;
 
+import com.example.priyanshu1.apiinterface.responce.loginresponce;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -24,7 +26,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("loginapi.php")
-    Call<CommanResponse> login(
+    Call<loginresponce> login(
 
             @Field("logingatekeeper") String logingatekeeper,
             @Field("mobno") String mobno,

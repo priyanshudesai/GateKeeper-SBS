@@ -1,7 +1,9 @@
 package com.example.priyanshu1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.priyanshu1.storage.sareprefrencelogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,4 +36,14 @@ public class BottomNavigationActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!sareprefrencelogin.getInstance(this).islogin())
+        {
+            Intent i = new Intent(this,LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
+    }
 }

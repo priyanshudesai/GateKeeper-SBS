@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.SurfaceTexture;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -34,11 +35,14 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.priyanshu1.BuildConfig;
+import com.example.priyanshu1.LoginActivity;
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.responce.User;
 import com.example.priyanshu1.camera.FileCompressor;
 import com.example.priyanshu1.profile.forgetpassword;
 import com.example.priyanshu1.profile.personaldetails;
 import com.example.priyanshu1.profile.professionaldetails;
+import com.example.priyanshu1.storage.sareprefrencelogin;
 import com.google.android.material.tabs.TabLayout;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -62,7 +66,7 @@ public class ProfileFragment extends Fragment  implements TabLayout.OnTabSelecte
     FragmentManager manager;
     Fragment fragment;
     AlertDialog.Builder builder;
-
+TextView name,mob;
 
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
@@ -74,6 +78,15 @@ public class ProfileFragment extends Fragment  implements TabLayout.OnTabSelecte
 
 
     private ProfileViewModel profileViewModel;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        User user=sareprefrencelogin.getInstance(getContext()).getuser();
+        String s=user.getFname()+" "+user.getLname();
+        name.setText(s);
+        mob.setText(user.getMobno());
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -89,8 +102,20 @@ public class ProfileFragment extends Fragment  implements TabLayout.OnTabSelecte
         viewPager.setOffscreenPageLimit(3);
         tabLayout.addOnTabSelectedListener(this);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
+        name=(TextView) root.findViewById(R.id.gate_name);
+        mob=(TextView) root.findViewById(R.id.gate_mobno);
         img=root.findViewById(R.id.pre_dp);
+
+mob.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        sareprefrencelogin.getInstance(getContext()).clear();
+        Intent i=new Intent(getContext(), LoginActivity.class);
+        startActivity(i);
+    }
+});
+
+
 
         img.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
@@ -135,7 +160,6 @@ public class ProfileFragment extends Fragment  implements TabLayout.OnTabSelecte
         return root;
 
     }
-
 
 
 

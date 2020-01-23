@@ -107,5 +107,6 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/loginViewsMargin"/>
+
 </LinearLayout>
 </ScrollView>
