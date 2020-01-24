@@ -16,17 +16,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.responce_get_set.visi_de;
 
 import java.util.List;
 
 public class visitior_adapter extends RecyclerView.Adapter<visitior_adapter.ViewHolder> {
     Dialog mydialog;
     Context mcontext;
-    public visitior_adapter(Context mcontext,List<visitior_data> visitior_data){
-        this.visitior_data=visitior_data;
+    private List<visi_de> list;
+    public visitior_adapter(Context mcontext,List<visi_de> list){
+        this.list=list;
         this.mcontext=mcontext;
     }
-   private List<visitior_data> visitior_data;
+
     @NonNull
     @Override
     public visitior_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -56,22 +58,24 @@ public class visitior_adapter extends RecyclerView.Adapter<visitior_adapter.View
 
     @Override
     public void onBindViewHolder(@NonNull visitior_adapter.ViewHolder viewHolder, int i) {
-        visitior_data d=visitior_data.get(i);
-        viewHolder.ve_name.setText(d.v_name);
-        viewHolder.ve_mobile.setText(d.v_mobile);
-        viewHolder.ve_date.setText(d.v_date);
-        viewHolder.ve_entery.setText(d.v_entry);
-        viewHolder.ve_exit.setText(d.v_exit);
-        viewHolder.ve_flat.setText(d.v_flat);
+        visi_de l=list.get(i);
+        viewHolder.ve_name.setText(l.getFullname());
+        viewHolder.ve_mobile.setText(l.getMobno());
+        viewHolder.ve_date.setText(l.getDate());
+        viewHolder.ve_entery.setText(l.getTime());
+        viewHolder.ve_exit.setText(l.getExittime());
+        viewHolder.ve_flat.setText(l.getHouseno());
+        viewHolder.ve_ve_no.setText(l.getNumofvisi());
+        viewHolder.ve_vehi_no.setText(l.getVno());
     }
 
     @Override
     public int getItemCount() {
-        return visitior_data.size();
+        return list.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView ve_name,ve_mobile,ve_date,ve_entery,ve_exit,ve_flat;
+        public TextView ve_name,ve_mobile,ve_date,ve_entery,ve_exit,ve_flat,ve_ve_no,ve_vehi_no;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +85,8 @@ public class visitior_adapter extends RecyclerView.Adapter<visitior_adapter.View
             ve_entery=(TextView) itemView.findViewById(R.id.visitior_entry);
             ve_exit=(TextView) itemView.findViewById(R.id.visitior_exit);
             ve_flat=(TextView) itemView.findViewById(R.id.visitior_flatno);
+            ve_ve_no=(TextView) itemView.findViewById(R.id.visitior_no_visi_entry);
+            ve_vehi_no=(TextView) itemView.findViewById(R.id.veno_entry);
 
         }
     }

@@ -24,6 +24,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:gravity="center"
+
             android:layout_marginTop="@dimen/_35sdp"
             android:textColor="@color/whiteTextColor"/>
 

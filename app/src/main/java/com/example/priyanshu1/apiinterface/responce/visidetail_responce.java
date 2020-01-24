@@ -1,18 +1,19 @@
 package com.example.priyanshu1.apiinterface.responce;
-import com.example.priyanshu1.apiinterface.responce_get_set.User;
+import java.util.List;
+
+import com.example.priyanshu1.apiinterface.responce_get_set.visi_de;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class loginresponce {
-
+public class visidetail_responce {
     @SerializedName("success")
     @Expose
     private Integer success;
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("user")
+    @SerializedName("de")
     @Expose
-    private User user;
+    private List<visi_de> de = null;
 
     public Integer getSuccess() {
         return success;
@@ -30,11 +31,13 @@ public class loginresponce {
         this.message = message;
     }
 
-    public User getUser() {
-        return user;
+    public List<visi_de> getDe() {
+        return de;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDe(List<visi_de> de) {
+        this.de = de;
     }
+
+
 }

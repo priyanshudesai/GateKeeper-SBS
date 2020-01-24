@@ -1,4 +1,4 @@
-package com.example.priyanshu1.apiinterface.responce;
+package com.example.priyanshu1.apiinterface.responce_get_set;
 
 public class User {
     int id;

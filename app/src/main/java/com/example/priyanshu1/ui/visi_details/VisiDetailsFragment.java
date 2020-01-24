@@ -18,17 +18,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.Api;
+import com.example.priyanshu1.apiinterface.ApiClient;
+import com.example.priyanshu1.apiinterface.responce.visidetail_responce;
+import com.example.priyanshu1.apiinterface.responce_get_set.visi_de;
 import com.example.priyanshu1.visitior_recy.visitior_adapter;
 import com.example.priyanshu1.visitior_recy.visitior_data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class VisiDetailsFragment extends Fragment {
 
     RecyclerView recyclerView;
-    List<visitior_data> li;
-
+    List<visi_de> li;
+    TextView t;
+    visitior_adapter vi;
     private VisiDetailsViewModel visiDetailsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,19 +45,34 @@ public class VisiDetailsFragment extends Fragment {
         visiDetailsViewModel =
                 ViewModelProviders.of(this).get(VisiDetailsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_visi_details, container, false);
+
         recyclerView=(RecyclerView) root.findViewById(R.id.visitior_recycle);
-        li=new ArrayList<>();
-        visitior_data data[]={new visitior_data("jethava kaushal","7383846827","21/04/2020","1:20pm","2:20pm","B-102")
-                ,new visitior_data("mokariya kaushik","7383846827","21/04/2020","1:40pm","2:40pm","B-102")
-                ,new visitior_data("desai priyanshu","7383846827","21/04/2020","2:20pm","3:50pm","C-103")
-                ,new visitior_data("bhatt danika","7383846827","20/04/2020","1:20pm","2:20pm","B-108")
-                ,new visitior_data("patel shakshi","7383846827","20/04/2020","4:20pm","9:20pm","B-109")};
-        for(int i=0;i< data.length;i++){
-            li.add(data[i]);
-        }
+//        li=new ArrayList<>();
+//        visitior_data data[]={new visitior_data("jethava kaushal","7383846827","21/04/2020","1:20pm","2:20pm","B-102")
+//                ,new visitior_data("mokariya kaushik","7383846827","21/04/2020","1:40pm","2:40pm","B-102")
+//                ,new visitior_data("desai priyanshu","7383846827","21/04/2020","2:20pm","3:50pm","C-103")
+//                ,new visitior_data("bhatt danika","7383846827","20/04/2020","1:20pm","2:20pm","B-108")
+//                ,new visitior_data("patel shakshi","7383846827","20/04/2020","4:20pm","9:20pm","B-109")};
+//        for(int i=0;i< data.length;i++){
+//            li.add(data[i]);
+//        }
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        visitior_adapter vi=new visitior_adapter(getContext(),li);
-        recyclerView.setAdapter(vi);
+        Api api= ApiClient.getClient().create(Api.class);
+        Call<visidetail_responce> call= api.visidetail("gatekvisidetail");
+        call.enqueue(new Callback<visidetail_responce>() {
+            @Override
+            public void onResponse(Call<visidetail_responce> call, Response<visidetail_responce> response) {
+                li=response.body().getDe();
+            vi=new visitior_adapter(getContext(),li);
+                recyclerView.setAdapter(vi);
+            }
+
+            @Override
+            public void onFailure(Call<visidetail_responce> call, Throwable t) {
+
+            }
+        });
+
 
 
         return root;

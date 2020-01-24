@@ -1,10 +1,12 @@
 package com.example.priyanshu1.apiinterface;
 
 import com.example.priyanshu1.apiinterface.responce.loginresponce;
+import com.example.priyanshu1.apiinterface.responce.visidetail_responce;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -48,6 +50,15 @@ public interface Api {
             @Field("purposeofvisi") String purposeofvisi,
             @Field("date") String date,
             @Field("time") String time
+
+    );
+
+
+
+    @FormUrlEncoded
+    @POST("GatekeeperVisiEntry.php")
+    Call<visidetail_responce> visidetail(
+            @Field("gatekvisidetail") String gatekvisidetail
 
     );
 }

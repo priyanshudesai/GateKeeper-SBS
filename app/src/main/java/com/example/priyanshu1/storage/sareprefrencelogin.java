@@ -3,7 +3,7 @@ package com.example.priyanshu1.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.priyanshu1.apiinterface.responce.User;
+import com.example.priyanshu1.apiinterface.responce_get_set.User;
 
 public class sareprefrencelogin {
     private static sareprefrencelogin minstance;

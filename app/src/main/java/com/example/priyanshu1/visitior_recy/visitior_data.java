@@ -5,7 +5,8 @@ public class visitior_data {
     String v_mobile;
     String v_date;
     String v_entry;
-
+String v_no_of_visi;
+String v_vehi_no;
     public String getV_name() {
         return v_name;
     }
@@ -54,16 +55,34 @@ public class visitior_data {
         this.v_flat = v_flat;
     }
 
+    public String getV_no_of_visi() {
+        return v_no_of_visi;
+    }
+
+    public void setV_no_of_visi(String v_no_of_visi) {
+        this.v_no_of_visi = v_no_of_visi;
+    }
+
+    public String getV_vehi_no() {
+        return v_vehi_no;
+    }
+
+    public void setV_vehi_no(String v_vehi_no) {
+        this.v_vehi_no = v_vehi_no;
+    }
+
     String v_exit;
     String v_flat;
 
-    public visitior_data(String v_name, String v_mobile, String v_date, String v_entry, String v_exit, String v_flat) {
+    public visitior_data(String v_name, String v_mobile, String v_date, String v_entry, String v_exit, String v_flat,String v_no_of_visi,String v_vehi_no) {
         this.v_name = v_name;
         this.v_mobile = v_mobile;
         this.v_date = v_date;
         this.v_entry = v_entry;
         this.v_exit = v_exit;
         this.v_flat = v_flat;
+        this.v_no_of_visi=v_no_of_visi;
+        this.v_vehi_no=v_vehi_no;
     }
 
 
