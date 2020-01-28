@@ -80,10 +80,10 @@ TextView name,mob;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        User user=sareprefrencelogin.getInstance(getContext()).getuser();
-        String s=user.getFname()+" "+user.getLname();
-        name.setText(s);
-        mob.setText(user.getMobno());
+            User user=sareprefrencelogin.getInstance(getContext()).getuser();
+            String s=user.getFname()+" "+user.getLname();
+            name.setText(s);
+            mob.setText(user.getMobno());
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -110,6 +110,7 @@ mob.setOnClickListener(new View.OnClickListener() {
         sareprefrencelogin.getInstance(getContext()).clear();
         Intent i=new Intent(getContext(), LoginActivity.class);
         startActivity(i);
+        getActivity().finish();
     }
 });
 
