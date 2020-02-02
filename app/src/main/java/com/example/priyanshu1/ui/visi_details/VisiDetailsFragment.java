@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.priyanshu1.R;
 import com.example.priyanshu1.apiinterface.Api;
@@ -37,6 +39,7 @@ public class VisiDetailsFragment extends Fragment {
     RecyclerView recyclerView;
     List<visi_de> li;
     TextView t;
+    SwipeRefreshLayout swipe;
     visitior_adapter vi;
     private VisiDetailsViewModel visiDetailsViewModel;
 
@@ -47,6 +50,15 @@ public class VisiDetailsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_visi_details, container, false);
 
         recyclerView=(RecyclerView) root.findViewById(R.id.visitior_recycle);
+        swipe=(SwipeRefreshLayout) root.findViewById(R.id.visiswipe);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+               visiload();
+                swipe.setRefreshing(false);
+            }
+        });
+
 //        li=new ArrayList<>();
 //        visitior_data data[]={new visitior_data("jethava kaushal","7383846827","21/04/2020","1:20pm","2:20pm","B-102")
 //                ,new visitior_data("mokariya kaushik","7383846827","21/04/2020","1:40pm","2:40pm","B-102")
@@ -57,23 +69,7 @@ public class VisiDetailsFragment extends Fragment {
 //            li.add(data[i]);
 //        }
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Api api= ApiClient.getClient().create(Api.class);
-        Call<visidetail_responce> call= api.visidetail("gatekvisidetail");
-        call.enqueue(new Callback<visidetail_responce>() {
-            @Override
-            public void onResponse(Call<visidetail_responce> call, Response<visidetail_responce> response) {
-                li=response.body().getDe();
-            vi=new visitior_adapter(getContext(),li);
-                recyclerView.setAdapter(vi);
-            }
-
-            @Override
-            public void onFailure(Call<visidetail_responce> call, Throwable t) {
-
-            }
-        });
-
-
+       visiload();
 
         return root;
     }
@@ -84,5 +80,25 @@ public class VisiDetailsFragment extends Fragment {
         recyclerView.setLayoutAnimation(layoutAnimationController);
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
+    }
+    public void  visiload()
+    {
+        Api api= ApiClient.getClient().create(Api.class);
+        Call<visidetail_responce> call= api.visidetail("gatekvisidetail");
+        call.enqueue(new Callback<visidetail_responce>() {
+            @Override
+            public void onResponse(Call<visidetail_responce> call, Response<visidetail_responce> response) {
+                li=response.body().getDe();
+                vi=new visitior_adapter(getContext(),li);
+                recyclerView.setAdapter(vi);
+            }
+
+            @Override
+            public void onFailure(Call<visidetail_responce> call, Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage()+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

@@ -33,17 +33,21 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             android:fillViewport="true">
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/visiswipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_85sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layoutAnimation="@anim/layout_animation_from_right"
                 android:id="@+id/visitior_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_85sdp"/>
-
+               />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </androidx.core.widget.NestedScrollView>
     </FrameLayout>
 </LinearLayout>
