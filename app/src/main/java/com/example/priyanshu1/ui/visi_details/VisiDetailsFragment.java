@@ -2,6 +2,7 @@ package com.example.priyanshu1.ui.visi_details;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,11 +52,22 @@ public class VisiDetailsFragment extends Fragment {
 
         recyclerView=(RecyclerView) root.findViewById(R.id.visitior_recycle);
         swipe=(SwipeRefreshLayout) root.findViewById(R.id.visiswipe);
+        swipe.setColorSchemeColors(getResources().getColor(R.color.colorPrimary),getResources().getColor(R.color.lite_blue));
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               visiload();
-                swipe.setRefreshing(false);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+
+                        swipe.setRefreshing(false);
+                        visiload();
+                        LayoutAnimationController layoutAnimationController= AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_animation_from_right);
+                        recyclerView.setLayoutAnimation(layoutAnimationController);
+                    }
+                }, 2000);
+               // swipe.setRefreshing(false);
             }
         });
 
