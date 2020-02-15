@@ -3,28 +3,23 @@ package com.example.priyanshu1.ui.visi_entry;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.priyanshu1.R;
 import com.example.priyanshu1.apiinterface.Api;
 import com.example.priyanshu1.apiinterface.ApiClient;
 import com.example.priyanshu1.apiinterface.CommanResponse;
-import com.example.priyanshu1.registration.password;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

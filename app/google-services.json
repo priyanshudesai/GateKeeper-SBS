@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "390245502338",
+    "firebase_url": "https://sbsgatekeeper.firebaseio.com",
+    "project_id": "sbsgatekeeper",
+    "storage_bucket": "sbsgatekeeper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390245502338:android:93bfe9cbae2a522d6bd39b",
+        "android_client_info": {
+          "package_name": "com.example.priyanshu1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390245502338-hh2qbr1np96pelrptio5s4k373p04rdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.priyanshu1",
+            "certificate_hash": "73161bd8a98f6d3875375cae5c87f79ba235c08f"
+          }
+        },
+        {
+          "client_id": "390245502338-1t2102e01sns3qulni47n00llodv4kng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYNwrVgcaRx5SWrU9eckvUz6fIsNsJcbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390245502338-1t2102e01sns3qulni47n00llodv4kng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -26,9 +26,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths"/>
         </provider>
-        <activity android:name=".registration.Forgotpassword_form"/>
+
         <activity android:name=".registration.Registration"/>
-        <activity android:name=".registration.password"/>
         <activity
             android:name=".BottomNavigationActivity"
             android:windowSoftInputMode="adjustPan"

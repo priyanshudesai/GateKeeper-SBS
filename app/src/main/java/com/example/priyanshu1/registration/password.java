@@ -2,11 +2,10 @@ package com.example.priyanshu1.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +17,6 @@ import com.example.priyanshu1.apiinterface.CommanResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class password extends AppCompatActivity {
     EditText password,conformpassword;
@@ -41,8 +39,8 @@ conformpassword=(EditText) findViewById(R.id.cpass);
         String s1=password.getText().toString();
         String s2=conformpassword.getText().toString();
         boolean k=true;
-        if(s1.isEmpty()){
-            password.setError("Invailid Password");
+        if(s1.isEmpty()&&s1.length()<8){
+            password.setError(" 8 character necessary");
             k=false;
         }
         if(s2.isEmpty()){
@@ -59,21 +57,22 @@ conformpassword=(EditText) findViewById(R.id.cpass);
 //            View layout = li.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.toast));
 //            Toast t=new Toast(getApplicationContext());
 //            t.setDuration(Toast.LENGTH_SHORT);
+//
 //            t.setView(layout);
 //            t.show();
             Intent i1=getIntent();
-
             String ffname=i1.getStringExtra("ifname");
             String llname=i1.getStringExtra("ilname");
             String mobino=i1.getStringExtra("imobno");
             String email=i1.getStringExtra("iemail");
+            String role=i1.getStringExtra("irole");
+            String houseno=i1.getStringExtra("ihouseno");
 
-            String addresss=i1.getStringExtra("iaddress");
-
-            String s5=password.getText().toString();
             Api api= ApiClient.getClient().create(Api.class);
-            Call<CommanResponse> call=api.createUser("gatekeeperRegistration",ffname
-            ,llname,"Gatekeeper",mobino,email,addresss,s5);
+
+            Call<CommanResponse> call =api.createUser("loginRegistration",ffname,
+                    llname,"Member",mobino,email,
+                    houseno,s2);
             call.enqueue(new Callback<CommanResponse>() {
                 @Override
                 public void onResponse(Call<CommanResponse> call, Response<CommanResponse> response) {
@@ -92,7 +91,6 @@ conformpassword=(EditText) findViewById(R.id.cpass);
                     Toast.makeText(password.this, t.getLocalizedMessage()+"", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     }
 }

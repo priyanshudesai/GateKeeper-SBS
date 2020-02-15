@@ -4,22 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.priyanshu1.Otpverification.Forgotpassword_form;
 import com.example.priyanshu1.apiinterface.Api;
 import com.example.priyanshu1.apiinterface.ApiClient;
 
-import com.example.priyanshu1.apiinterface.CommanResponse;
 import com.example.priyanshu1.apiinterface.responce.loginresponce;
-import com.example.priyanshu1.registration.Forgotpassword_form;
 import com.example.priyanshu1.registration.Registration;
 import com.example.priyanshu1.storage.sareprefrencelogin;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void viewForgotPAssword(View view) {
+
         Intent i = new Intent(LoginActivity.this, Forgotpassword_form.class);
         startActivity(i);
 
