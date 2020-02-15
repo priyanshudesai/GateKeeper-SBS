@@ -28,6 +28,10 @@
         </provider>
 
         <activity android:name=".registration.Registration"/>
+        <activity android:name=".Otpverification.Forgotpassword_form"/>
+        <activity android:name=".Otpverification.Forgetpassword_otp"/>
+        <activity android:name=".registration.password"/>
+        <activity android:name=".Otpverification.forget_pass_change"/>
         <activity
             android:name=".BottomNavigationActivity"
             android:windowSoftInputMode="adjustPan"

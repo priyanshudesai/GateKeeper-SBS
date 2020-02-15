@@ -64,10 +64,19 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("forgrtpass.php")
-    Call<CommanResponse> changepass(
-            @Field("changepass") String changepass,
+    Call<CommanResponse> changepassgate(
+            @Field("changepassgate") String changepassgate,
             @Field("mobno") String mobno,
             @Field("password") String password
+
+    );
+
+
+    @FormUrlEncoded
+    @POST("forgrtpass.php")
+    Call<CommanResponse> mobnoexgate(
+            @Field("passmobnoexgate") String passmobnoexgate,
+            @Field("mobno") String mobno
 
     );
 }

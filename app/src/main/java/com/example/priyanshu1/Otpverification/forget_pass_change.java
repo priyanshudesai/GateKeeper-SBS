@@ -52,7 +52,7 @@ public class forget_pass_change extends AppCompatActivity {
         String s1 = password.getText().toString();
         String s2 = conformpassword.getText().toString();
         boolean k = true;
-        if (s1.isEmpty() && s1.length() < 8) {
+        if (s1.isEmpty() || s1.length() < 8) {
             password.setError(" 8 character necessary");
             k = false;
         }
@@ -76,7 +76,7 @@ public class forget_pass_change extends AppCompatActivity {
             Intent i1 = getIntent();
             String mob = i1.getStringExtra("mob");
             Api api = ApiClient.getClient().create(Api.class);
-            Call<CommanResponse> call = api.changepass("changepass", mob, s1);
+            Call<CommanResponse> call = api.changepassgate("changepassgate", mob, s1);
             call.enqueue(new Callback<CommanResponse>() {
                 @Override
                 public void onResponse(Call<CommanResponse> call, Response<CommanResponse> response) {

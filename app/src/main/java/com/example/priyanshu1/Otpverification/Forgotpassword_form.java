@@ -5,11 +5,19 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.priyanshu1.LoginActivity;
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.Api;
+import com.example.priyanshu1.apiinterface.ApiClient;
+import com.example.priyanshu1.apiinterface.CommanResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Forgotpassword_form extends AppCompatActivity {
@@ -32,9 +40,31 @@ public class Forgotpassword_form extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(Forgotpassword_form.this, Forgetpassword_otp.class);
-                intent.putExtra("mobile", mobile);
-                startActivity(intent);
+                Api api = ApiClient.getClient().create(Api.class);
+                Call<CommanResponse> call = api.mobnoexgate("passmobnoexgate", mobile);
+                call.enqueue(new Callback<CommanResponse>() {
+                    @Override
+                    public void onResponse(Call<CommanResponse> call, Response<CommanResponse> response) {
+                        if (response.body().getSuccess()==200) {
+                            Intent intent = new Intent(Forgotpassword_form.this, Forgetpassword_otp.class);
+                            intent.putExtra("mobile", mobile);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(Forgotpassword_form.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CommanResponse> call, Throwable t) {
+                        Toast.makeText(Forgotpassword_form.this, t.getLocalizedMessage() + "", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
             }
         });
 //        mcallback= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -80,6 +110,7 @@ public class Forgotpassword_form extends AppCompatActivity {
 //                    }
 //                });
     }
+
 
     public void loginback2(View view) {
         Intent i = new Intent(Forgotpassword_form.this, LoginActivity.class);
