@@ -16,9 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.priyanshu1.R;
+import com.example.priyanshu1.apiinterface.Api;
+import com.example.priyanshu1.apiinterface.ApiClient;
+import com.example.priyanshu1.apiinterface.CommanResponse;
 import com.example.priyanshu1.apiinterface.responce_get_set.visi_de;
+import com.example.priyanshu1.ui.visi_details.VisiDetailsFragment;
+import com.example.priyanshu1.ui.visi_entry.VisiEntryFragment;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class visitior_adapter extends RecyclerView.Adapter<visitior_adapter.ViewHolder> {
     Dialog mydialog;
@@ -42,11 +51,38 @@ public class visitior_adapter extends RecyclerView.Adapter<visitior_adapter.View
                 EditText di_exit=(EditText) mydialog.findViewById(R.id.pop_exit);
                 Button b=(Button)mydialog.findViewById(R.id.pop_ok);
                 String s=di_exit.getText().toString();
+               // Toast.makeText(mcontext, viewHolder.itemView.getId()+"", Toast.LENGTH_SHORT).show();
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      viewHolder.ve_exit.setText(di_exit.getText().toString());
-                      mydialog.dismiss();
+                       String id= list.get(viewHolder.getAdapterPosition()).getId()+"";
+
+                        Api api= ApiClient.getClient().create(Api.class);
+                        Call<CommanResponse> call=api.visiexittime("gatekvisiexittime",id,s);
+                        call.enqueue(new Callback<CommanResponse>() {
+                            @Override
+                            public void onResponse(Call<CommanResponse> call, Response<CommanResponse> response) {
+                                if (response.body().getSuccess()==200) {
+                                    mydialog.dismiss();
+//                                    mydialog.cancel();
+                                    //visiload();
+                                }
+                                else {
+                                    Toast.makeText(mcontext, response.body().getMessage()+"", Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<CommanResponse> call, Throwable t) {
+                                Toast.makeText(mcontext, t.getLocalizedMessage()+"", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                      //viewHolder.ve_exit.setText(di_exit.getText().toString());
+
+
+
                     }
                 });
                 mydialog.show();

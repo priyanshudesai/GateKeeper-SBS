@@ -63,6 +63,15 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("GatekeeperVisiEntry.php")
+    Call<CommanResponse> visiexittime(
+            @Field("gatekvisiexittime") String gatekvisiexittime,
+            @Field("id") String id,
+            @Field("exittime") String exittime
+
+    );
+
+    @FormUrlEncoded
     @POST("forgrtpass.php")
     Call<CommanResponse> changepassgate(
             @Field("changepassgate") String changepassgate,

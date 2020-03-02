@@ -56,16 +56,14 @@ import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment extends Fragment  implements TabLayout.OnTabSelectedListener  {
-
-
+public class ProfileFragment extends Fragment{
     TabLayout tabLayout;
     ViewPager viewPager;
     FragmentManager manager;
     Fragment fragment;
     AlertDialog.Builder builder;
-TextView name,mob;
 
+    TextView name,mob;
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
     File mPhotoFile;
@@ -74,79 +72,93 @@ TextView name,mob;
     ImageView img;
 
 
-
     private ProfileViewModel profileViewModel;
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-            User user=sareprefrencelogin.getInstance(getContext()).getuser();
-            String s=user.getFname()+" "+user.getLname();
-            name.setText(s);
-            mob.setText(user.getMobno());
-    }
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         profileViewModel =
                 ViewModelProviders.of(this).get(ProfileViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        tabLayout = root.findViewById(R.id.tablayout_tl);
+        final View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        //  tabLayout = root.findViewById(R.id.tablayout_tl);
         mCompressor = new FileCompressor(getContext());
-        viewPager = root.findViewById(R.id.tablayout_viewpager);
+        //  viewPager = root.findViewById(R.id.tablayout_viewpager);
         manager = getActivity().getSupportFragmentManager();
-
-        viewPager.setAdapter(new ProfileFragment.adapter(manager));
-        viewPager.setOffscreenPageLimit(3);
-        tabLayout.addOnTabSelectedListener(this);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        name=(TextView) root.findViewById(R.id.gate_name);
-        mob=(TextView) root.findViewById(R.id.gate_mobno);
-        img=root.findViewById(R.id.pre_dp);
-
-mob.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        sareprefrencelogin.getInstance(getContext()).clear();
-        Intent i=new Intent(getContext(), LoginActivity.class);
-        startActivity(i);
-        getActivity().finish();
-    }
-});
+        name=(TextView) root.findViewById(R.id.user_name);
+        mob=(TextView) root.findViewById(R.id.user_mob);
 
 
+        root.findViewById(R.id.exit_pro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sareprefrencelogin.getInstance(getContext()).clear();
+                Intent i=new Intent(getContext(), LoginActivity.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
+
+        root.findViewById(R.id.changepass_pro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder= new AlertDialog.Builder(getContext());
+                LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v=inflater.inflate(R.layout.fragment_forgetpassword,null);
+                builder.setView(v);
+                builder.setCancelable(true);
+                AlertDialog alert=builder.create();
+
+                //alert.dismiss();
+                alert.show();
+
+            }
+        });
+
+
+
+
+//        viewPager.setAdapter(new ProfileFragment.adapter(manager));
+//        viewPager.setOffscreenPageLimit(3);
+//        tabLayout.addOnTabSelectedListener(this);
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        img = root.findViewById(R.id.pre_dp);
 
         img.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                LayoutInflater inflater1=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View v=inflater.inflate(R.layout.fragement_profile_dp,null);
+                LayoutInflater inflater1 = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = inflater.inflate(R.layout.fragement_profile_dp, null);
                 ImageView dp;
                 TextView t;
-                dp=v.findViewById(R.id.profile_dp);
-                t=v.findViewById(R.id.edit_dp);
-                Drawable d=img.getDrawable();
+                dp = v.findViewById(R.id.profile_dp);
+                t = v.findViewById(R.id.edit_dp);
+                Drawable d = img.getDrawable();
 
                 dp.setImageDrawable(d);
 
                 builder = new AlertDialog.Builder(getActivity());
 
                 builder.setView(v);
-                t.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        selectImage();
-                    }
-                });
-
 
                 builder.setCancelable(true);
                 AlertDialog alert = builder.create();
                 alert.show();
 
+                t.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        selectImage();
+                        alert.dismiss();
+                    }
+
+                });
+
+
                 //.setLayoutAnimation(layoutAnimationController);
-                alert.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
+                alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
                 alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
@@ -156,64 +168,106 @@ mob.setOnClickListener(new View.OnClickListener() {
         });
 
 
+
+        root.findViewById(R.id.personal_pro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder= new AlertDialog.Builder(getContext());
+                LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v=inflater.inflate(R.layout.fragment_personaldetails,null);
+                builder.setView(v);
+                builder.setCancelable(true);
+                AlertDialog alert=builder.create();
+
+                //alert.dismiss();
+                alert.show();
+            }
+        });
+
+
+        root.findViewById(R.id.professional_pro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder= new AlertDialog.Builder(getContext());
+                LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v=inflater.inflate(R.layout.fragment_professionaldetails,null);
+                builder.setView(v);
+                builder.setCancelable(true);
+                AlertDialog alert=builder.create();
+
+                //alert.dismiss();
+                alert.show();
+            }
+        });
+
+
         return root;
 
     }
 
 
-
     @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        User user= sareprefrencelogin.getInstance(getContext()).getuser();
+        String s=user.getFname()+" "+user.getLname();
+        name.setText(s);
+        mob.setText(user.getMobno());
     }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
+//    @Override
+//    public void onTabSelected(TabLayout.Tab tab) {
+//        viewPager.setCurrentItem(tab.getPosition());
+//
+//    }
+//
+//    @Override
+//    public void onTabUnselected(TabLayout.Tab tab) {
+//
+//    }
+//
+//    @Override
+//    public void onTabReselected(TabLayout.Tab tab) {
+//
+//    }
+//
+//
+//    public class adapter extends FragmentStatePagerAdapter {
+//
+//        public adapter(FragmentManager fm) {
+//            super(fm);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            fragment = null;
+//            if (position == 0) {
+//
+//                fragment = new personaldetails();
+//
+//            }
+//            if (position == 1) {
+//
+//                fragment = new professionaldetails();
+//
+//            }
+//            if (position == 2) {
+//
+//                fragment = new forgetpassword();
+//
+//            }
+//
+//
+//            return fragment;
+//
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return 3;
+//        }
+//    }
 
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-
-    public class adapter extends FragmentStatePagerAdapter {
-
-        public adapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            fragment=null;
-            if (position == 0) {
-
-                fragment = new personaldetails();
-
-            }
-            if (position == 1) {
-
-                fragment = new professionaldetails();
-
-            }
-            if (position == 2) {
-
-                fragment = new forgetpassword();
-
-            }
-
-
-            return fragment;
-
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    }
     private void selectImage() {
         final CharSequence[] items = {
                 "Take Photo", "Choose from Library",
@@ -280,6 +334,7 @@ mob.setOnClickListener(new View.OnClickListener() {
                 Glide.with(ProfileFragment.this)
                         .load(mPhotoFile)
                         .apply(new RequestOptions().centerCrop()
+
                                 .placeholder(R.drawable.profile_pic_place_holder))
                         .into(img);
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
@@ -292,7 +347,7 @@ mob.setOnClickListener(new View.OnClickListener() {
                 Glide.with(ProfileFragment.this)
                         .load(mPhotoFile)
                         .apply(new RequestOptions().centerCrop()
-                                .circleCrop()
+
                                 .placeholder(R.drawable.profile_pic_place_holder))
                         .into(img);
             }
@@ -374,7 +429,7 @@ mob.setOnClickListener(new View.OnClickListener() {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String mFileName = "JPEG_" + timeStamp + "_";
-        File storageDir =getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
         return mFile;
     }
@@ -385,8 +440,8 @@ mob.setOnClickListener(new View.OnClickListener() {
     public String getRealPathFromUri(Uri contentUri) {
         Cursor cursor = null;
         try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor =getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
             assert cursor != null;
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
@@ -397,4 +452,5 @@ mob.setOnClickListener(new View.OnClickListener() {
             }
         }
     }
+
 }
